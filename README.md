@@ -4,7 +4,7 @@ Steps to launch it:
 
 ```bash
 cd ~/ws/src
-vcs import < recepcionist_demo/thirdparty.repos
+vcs import < aws-robomaker-small-house-world/thirdparty.repos
 ```
 
 ```bash
