@@ -21,7 +21,7 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 
-install(DIRECTORY launch params maps rviz urdf models
+install(DIRECTORY launch params maps rviz urdf models sim_config
         DESTINATION share/${PROJECT_NAME})     
 
 if(BUILD_TESTING)

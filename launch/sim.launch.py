@@ -25,8 +25,9 @@ def generate_launch_description():
     pitch = LaunchConfiguration('P')
     yaw = LaunchConfiguration('Y')
 
+    
     package_dir = get_package_share_directory('harmonic_demo')
-
+    gui_config_path = os.path.join(package_dir, 'sim_config/gui.config')
     gz_model_path = os.path.join(package_dir,
         'models'
     )
@@ -41,13 +42,8 @@ def generate_launch_description():
     z_pose = LaunchConfiguration('z_pose', default='7.1')
 
     model_folder = 'turtlebot3_waffle'
-    urdf_path = os.path.join(
-        get_package_share_directory('harmonic_demo'),
-        'models',
-        model_folder,
-        'model.sdf'
-    )
     
+
     world = os.path.join(get_package_share_directory('harmonic_demo'), 'maps', 'harmonic.world')
     # world = os.path.join(
     #     get_package_share_directory('aws_robomaker_small_house_world'),
@@ -56,14 +52,18 @@ def generate_launch_description():
     # )
 
     gazebo_client = IncludeLaunchDescription(
-	PythonLaunchDescriptionSource(
+	    PythonLaunchDescriptionSource(
             os.path.join(ros_gz_sim, 'launch', 'gz_sim.launch.py')),
-        launch_arguments={'gz_args': '-g -v4 '}.items()
+        launch_arguments={'gz_args': f'-g -v4 --gui-config {gui_config_path}'}.items()
      )
     gazebo_server = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(ros_gz_sim, 'launch', 'gz_sim.launch.py')),
-        launch_arguments={'gz_args': ['-r -s -v4 ', world], 'on_exit_shutdown': 'true'}.items()
+        launch_arguments={
+            'gz_args': ['-r -s -v4 ', world],
+            'on_exit_shutdown': 'true'
+        }.items()
+        # launch_arguments={'gz_args': [' -v4 ', world], 'on_exit_shutdown': 'true'}.items()
     )
 
     declare_x_cmd = DeclareLaunchArgument(
