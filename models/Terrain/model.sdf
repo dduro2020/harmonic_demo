@@ -16,11 +16,11 @@
         <geometry>
           <heightmap>
             <use_terrain_paging>true</use_terrain_paging>
-            <!-- <texture>
+            <texture>
               <diffuse>materials/textures/Sand_Albedo.png</diffuse>
               <normal>materials/textures/Sand_Normal.png</normal>
               <size>10</size>
-            </texture> -->
+            </texture>
             <texture>
               <diffuse>materials/textures/Grass_Albedo.png</diffuse>
               <normal>materials/textures/Grass_Normal.png</normal>
